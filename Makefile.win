@@ -1,0 +1,40 @@
+# Project: Emulator
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = main.o emulator_function.o instruction.o io.o modrm.o
+LINKOBJ  = main.o emulator_function.o instruction.o io.o modrm.o
+LIBS     = -L"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/lib" -L"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/include" -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/include" -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Users/Igor/Tools/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = Emulator.exe
+CXXFLAGS = $(CXXINCS) -g3
+CFLAGS   = $(INCS) -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+main.o: main.c
+	$(CC) -c main.c -o main.o $(CFLAGS)
+
+emulator_function.o: emulator_function.c
+	$(CC) -c emulator_function.c -o emulator_function.o $(CFLAGS)
+
+instruction.o: instruction.c
+	$(CC) -c instruction.c -o instruction.o $(CFLAGS)
+
+io.o: io.c
+	$(CC) -c io.c -o io.o $(CFLAGS)
+
+modrm.o: modrm.c
+	$(CC) -c modrm.c -o modrm.o $(CFLAGS)

@@ -1,0 +1,1 @@
+Emulator > log.txt
